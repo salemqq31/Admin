@@ -7,6 +7,7 @@ import { getPosts, deletePost, addPost, updatePost, Post } from "@/firebase/post
 import { getHotelApplications, getRegistrations, deleteHotelApplication, deleteRegistration, HotelApplication, Registration } from "@/firebase/applications";
 import PostForm from "@/components/PostForm";
 import Login from "@/components/Login";
+import PricingCalculator from "@/components/PricingCalculator";
 
 export default function BlogAdmin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -240,6 +241,12 @@ export default function BlogAdmin() {
               onClick={() => setActiveTab("registrations")}
             >
               Ön Kayıt
+            </button>
+            <button 
+              className={`pb-4 px-1 ${activeTab === "calculator" ? "border-b-2 border-blue-500 text-blue-500" : ""}`}
+              onClick={() => setActiveTab("calculator")}
+            >
+              Hesaplama Sihirbazı
             </button>
           </div>
         </div>
@@ -492,6 +499,11 @@ export default function BlogAdmin() {
               <span>Toplam: {registrations.length} ön kayıt</span>
             </div>
           </div>
+        )}
+        
+        {/* Hesaplama Sihirbazı Tab */}
+        {activeTab === "calculator" && (
+          <PricingCalculator />
         )}
       </div>
       
